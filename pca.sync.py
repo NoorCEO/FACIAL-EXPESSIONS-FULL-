@@ -18,7 +18,7 @@ import cv2
 from pathlib import Path
 
 INPUT_DIR = Path.cwd() / "jaffedbase prepaired"
-OUTPUT_DIR = Path.cwd() / "jaffedbase augmented"
+OUTPUT_DIR = Path.cwd() / "jaffedbase prepaired"
 # create output dir if not exists
 OUTPUT_DIR.mkdir(exist_ok=True)
 
