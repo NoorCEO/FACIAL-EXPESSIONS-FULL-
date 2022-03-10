@@ -19,15 +19,15 @@ import cv2
 
 my_transforms = transforms.Compose([
     transforms.ToPILImage(),
-    transforms.Resize(size=(65, 65)),
-    transforms.RandomCrop(size=(64, 64)),
-    transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.2),
+    transforms.Resize(size=(266, 266)),
+    transforms.RandomCrop(size=(265, 265)),
+    transforms.ColorJitter(brightness=0.2),
     transforms.RandomRotation(degrees=45),
-    transforms.RandomHorizontalFlip(p=0.5),
-    transforms.RandomVerticalFlip(p=0.5),
+    transforms.RandomHorizontalFlip(p=0.2),
+    transforms.RandomVerticalFlip(p=0.2),
     transforms.RandomGrayscale(p=0.2),
     transforms.ToTensor(),
-    transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+    transforms.Normalize((0, 0, 0), (1, 1, 1))
 ])
 
 data_dir = os.getcwd() + '/jaffedbase prepaired/'
@@ -45,5 +45,8 @@ for folder in os.listdir(data_dir):
         # create output directory if it doesn't exist
         if not os.path.exists(output_dir + folder):
             os.makedirs(output_dir + folder)
+        # get filename without extension using `os.path.splitext`
+        filename, extension = os.path.splitext(file)
         # save image
-        save_image(img, output_dir + folder + '/transforms_' + file)
+        save_image(img, output_dir + folder + '/transforms_' + filename + '.png')
+
